@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+
+# return either 'linux' or 'macos'
+function get_platform () {
+  case "$(uname -s)" in
+    Darwin)
+      echo "macos"
+      ;;
+    Linux)
+      echo "linux"
+      ;;
+    *)
+      echo "unsupported platform"
+      exit 1
+      ;;
+  esac
+}
+
+green="\033[0;32m"
+purple="\033[0;35m"
+blue="\033[0;34m"
+red="\033[0;31m"
+reset="\033[0m"
+
+platform=$(get_platform)
+
+# exit if stow is not installed
+if ! command -v stow &> /dev/null; then
+  echo -e "${red}GNU stow is not installed${reset}"
+  echo -e "Please install ${blue}GNU stow${reset} before continuing."
+  exit 1
+fi
+echo -e "${blue}GNU stow${green} is installed${reset}"
+
+# exit if realpath is not available
+if ! command -v realpath &> /dev/null; then
+  echo -e "${red}realpath is not installed${reset}"
+  echo -e "Please install ${blue}realpath${reset} before continuing."
+  exit 1
+fi
+echo -e "${blue}realpath${green} is installed${reset}"
+
+# exit if unsupported platform
+if [[ "$platform" == "Unsupported platform" ]]; then
+  echo -e "${purple}Unsupported platform${reset}"
+  echo -e "The currently supported platforms are ${green}macos${reset} and ${green}linux${reset}."
+  exit 1
+fi
+echo -e "${green}Detected platform: ${blue}${platform}${reset}"
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(realpath "${script_dir}/..")"
+stow_dir="${repo_dir}"
+backup_dir="${repo_dir}/backup"
+
+# exit if all the stow packages for the platform are empty
+stow_packages="base ${platform}"
+all_packages_empty=true
+for package in ${stow_packages}; do
+  package_files=$(ls -A "${stow_dir}/${package}") 
+  if [[ -n "${package_files}" ]]; then
+    all_packages_empty=false
+    break
+  fi
+done
+if [[ "${all_packages_empty}" == true ]]; then
+  echo -e "${red}No dotfiles found for the ${purple}${platform}${red} platform.${reset}"
+  echo -e "Plase add dotfiles to either:"
+  for package in ${stow_packages}; do
+    echo -e "- ${purple}${stow_dir}/${package}${reset}"
+  done
+  exit 1
+fi
+
+# move to GNU stow directory
+echo -e "${green}Moving to GNU stow directory."
+cd "${stow_dir}" > /dev/null
+
+# Get list of conflicting files, if any.
+# That is, files that are both: 
+#   - In $HOME and in one of the stow packages for the platorm, and 
+#   - are not symlinks whose target contains the stow package (i.e. not already
+#     managed by stow)
+conflicting_files=''
+for package in ${stow_packages}; do
+  package_files=$(find "${stow_dir}/${package}" -type f,l -printf "%P\n")
+  for file in ${package_files}; do
+    if [[ -f "${HOME}/${file}" ]] && [[ ! $(readlink "${HOME}/${file}") =~ "dotfiles/${package}" ]]; then
+      conflicting_files="${conflicting_files} ${file}"
+    fi
+  done
+done
+conflicting_files=$(echo "${conflicting_files}" | sed 's/^ //')
+
+# If there are conflicting files.
+if [[ -n "${conflicting_files}" ]]; then
+  echo ''
+  echo -e "${red}Found conflicting files:${reset}"
+  # print them one by line
+  for file in ${conflicting_files}; do
+    echo -e "${purple}~/${file}${reset}"
+  done
+  echo ''
+
+  # If a backup directory exists, exit. Tell user to remove conflicting files
+  # if he wants to proceed.
+  if [[ -d "${backup_dir}" ]]; then
+    echo -e "Please remove these files manually before continuing."
+    exit 1
+  else
+    # If there's no backup directory, prompt user to create one.
+    echo -e "You can either:"
+    echo -e "- Press ${purple}n${reset} to exit. You can then remove the files manually before trying again."
+    echo -e "- Type ${purple}y${reset} to move the conflicting files to a backup directory."
+    echo -e "  They can be restored with ${blue}yas-bdsm restore_backup${reset}."
+    echo ''
+    read -p "Would you like to backup the conflicting files? [y/N] " -n 1 -r backup_conflicting_files
+    echo ''
+  fi
+fi
+
+# If the user chose to exit, exit.
+if [[ "${backup_conflicting_files}" =~ ^[Nn]$ ]]; then
+  echo -e "${red}Exiting${reset}"
+  exit 1
+elif [[ "${backup_conflicting_files}" =~ ^[Yy]$ ]]; then
+  # backup conflicting files
+  echo -e "${green}Creating backup directory: ${blue}${backup_dir}${reset}"
+  mkdir -p "${backup_dir}"
+  echo -e "${green}Moving conflicting files to backup directory${reset}"
+  for file in ${conflicting_files}; do
+    mkdir -p "${backup_dir}/$(dirname "${file}")"
+    mv -v "${HOME}/${file}" "${backup_dir}/${file}"
+  done
+  echo ''
+  echo -e "${green}Backup complete${reset}" 
+fi
+
+# Create a temporary ~/.stow-global-ignore file to ignore '.gitkeep' files
+# {if such a file doesn't exist already)
+created_stow_global_ignore=false
+if [[ ! -f ~/.stow-global-ignore ]]; then
+  echo -e "${green}Creating temporary ${blue}~/.stow-global-ignore${green} file${reset}"
+  cat > ~/.stow-global-ignore <<EOF
+.gitkeep
+EOF
+  created_stow_global_ignore=true
+fi
+
+# Install dotfiles with stow
+# Note: --restow will first stow and then stow again. This is useful for
+#       pruning obsolete symlinks, and it allows ./bin/install to be used to
+#       "update" too.
+install_command="stow --restow ${stow_packages}"
+install_command_dry_run="${install_command}"
+echo -e "${green}Installing dotfiles with: ${purple}${install_command}${reset}"
+
+# prepend [stow] to the stderr output, and redirect it to stderr  
+${install_command_dry_run} 2> >(sed 's/^/[stow] /' >&2)
+
+echo -e "${green}Installation complete${reset}"
+
+# Remove the temporary ~/.stow-global-ignore file
+if [[ "${created_stow_global_ignore}" == true ]]; then
+  echo -e "${green}Removing temporary ${blue}~/.stow-global-ignore${green} file${reset}"
+  rm ~/.stow-global-ignore
+fi

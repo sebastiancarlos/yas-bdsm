@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+# return either 'linux' or 'macos'
+function get_platform () {
+  case "$(uname -s)" in
+    Darwin)
+      echo "macos"
+      ;;
+    Linux)
+      echo "linux"
+      ;;
+    *)
+      echo "unsupported platform"
+      exit 1
+      ;;
+  esac
+}
+
+green="\033[0;32m"
+purple="\033[0;35m"
+blue="\033[0;34m"
+red="\033[0;31m"
+reset="\033[0m"
+
+platform=$(get_platform)
+
+# exit if realpath is not available
+if ! command -v realpath &> /dev/null; then
+  echo -e "${red}realpath is not installed${reset}"
+  echo -e "Please install ${blue}realpath${reset} before continuing."
+  exit 1
+fi
+echo -e "${blue}realpath${green} is installed${reset}"
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(realpath "${script_dir}/..")"
+stow_dir="${repo_dir}"
+
+# exit if all the stow packages for the platform are empty
+stow_packages="base ${platform}"
+all_packages_empty=true
+for package in ${stow_packages}; do
+  package_files=$(ls -A "${stow_dir}/${package}") 
+  if [[ -n "${package_files}" ]]; then
+    all_packages_empty=false
+    break
+  fi
+done
+if [[ "${all_packages_empty}" == true ]]; then
+  echo -e "${red}No dotfiles found for the ${purple}${platform}${red} platform.${reset}"
+  echo -e "Plase add dotfiles to either:"
+  for package in ${stow_packages}; do
+    echo -e "- ${purple}${stow_dir}/${package}${reset}"
+  done
+  exit 1
+fi
+
+# Ask user for confirmation to eject.
+echo -e "${blue}Ejecting dotfiles${reset}"
+echo -e "This will create hard copies in your home folder of every file in the dotfile folders for the ${purple}${platform}${reset} platform."
+echo -e "Your dotfiles will no longer be symlinks; You will have to manage them manually."
+echo -e "Note: This will not restore your backup files. For that, you can run ${purple}yas-bdsm restore-backup${reset} later."
+echo -e "${blue}Do you want to continue?${reset} [y/N]"
+read -r response
+if [[ ! "${response}" =~ ^[yY]$ ]]; then
+  echo -e "${red}Aborting${reset}"
+  exit 1
+fi
+
+# move to GNU stow directory
+echo -e "${green}Moving to GNU stow directory: ${blue}${stow_dir}${reset}"
+pushd "${stow_dir}" > /dev/null
+
+# create hard copies of all files in the stow packages, overwriting files and
+# creating directories as needed. Excluding .gitkeep files.
+for package in ${stow_packages}; do
+  package_files=$(find "${stow_dir}/${package}" -type f,l -not -name "*.gitkeep" -printf "%P\n")
+  for file in ${package_files}; do
+    mkdir -p "$(dirname "${HOME}/${file}")"
+    cp -f -v --remove-destination "${stow_dir}/${package}/${file}" "${HOME}/${file}"
+  done
+done
+echo -e "${green}Finished ejecting dotfiles${reset}"

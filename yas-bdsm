@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# Wrapper script around the scripts
+# - .internal-scripts/install
+# - .internal-scripts/restore-backup
+# - .internal-scripts/eject
+
+# Usage: yas-bdsm [-h/--help] [install|restore-backup|eject]
+#        -h/--help: Show this help message
+#        install: Install or sync the dotfiles as symlinks in your home folder.
+#        restore-backup: Restore the backup of your dotfiles created by install.
+#        eject: Replace the symlinks in your home folder with hard copies.
+
+usage() {
+    local green='\x1b[32m'
+    local bold='\x1b[1m'
+    local blue='\x1b[34m'
+    local yellow='\x1b[33m'
+    local reset='\x1b[0m'
+
+    echo -e "${bold}Usage:${reset} ${green}yas-bdsm${reset} [${yellow}-h${seset}/${yellow}--help${reset}] [${blue}${bold}install${reset}|${blue}${bold}restore-backup${reset}|${blue}${bold}eject${reset}]"
+    echo -e ""
+    echo -e "       ${bold}-h/--help:${reset} Show this help message"
+    echo -e ""
+    echo -e "       ${bold}install:${reset}        Install or sync the dotfiles as symlinks in your home folder."
+    echo -e "       ${bold}restore-backup:${reset} Restore the backup of your dotfiles created by install."
+    echo -e "       ${bold}eject:${reset}          Replace the symlinks in your home folder with hard copies."
+    echo -e ""
+}
+
+if [[ "$1" == "-h" || "$1" == "--help" || "$#" -eq 0 ]]; then
+    usage
+    exit 0
+fi
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+if [[ -L "${BASH_SOURCE[0]}" ]]; then
+    SCRIPT_DIR="$(readlink "${BASH_SOURCE[0]}")"
+    SCRIPT_DIR="$( cd "$( dirname "${SCRIPT_DIR}" )" >/dev/null 2>&1 && pwd )"
+fi
+
+if [[ "$1" == "install" ]]; then
+    ${SCRIPT_DIR}/.internal-scripts/install
+    exit 0
+fi
+if [[ "$1" == "restore-backup" ]]; then
+    ${SCRIPT_DIR}/.internal-scripts/restore-backup
+    exit 0
+fi
+if [[ "$1" == "eject" ]]; then
+    ${SCRIPT_DIR}/.internal-scripts/eject
+    exit 0
+fi

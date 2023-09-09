@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+green="\033[0;32m"
+purple="\033[0;35m"
+blue="\033[0;34m"
+red="\033[0;31m"
+reset="\033[0m"
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_dir="$(realpath "${script_dir}/..")"
+backup_dir="${repo_dir}/backup"
+
+# exit if there is no backup directory, and point user to bin/install
+if [[ ! -d "${backup_dir}" ]]; then
+  echo -e "${red}No backup directory found at: ${blue}${backup_dir}${reset}"
+  echo -e "Please run: ${blue}bin/install${reset}"
+  exit 1
+fi
+
+# move everything to the home directory, force overwriting existing files, create directories as needed
+echo -e "${green}Moving backup dotfiles to home directory: ${blue}${HOME}${reset}"
+find "${backup_dir}" -type f,l -printf "%P\n" | while read file; do
+  mkdir -p "$(dirname "${HOME}/${file}")"
+  cp -v -f --remove-destination "${backup_dir}/${file}" "${HOME}/${file}"
+done
+echo -e "${green}Moving backup dotfiles to home directory: ${blue}${HOME}${reset} ${green}done${reset}"
+
+# ask for confirmation before deleting the backup directory
+echo -e "${purple}Do you want to delete the backup directory?${reset} [y/N] "
+read -r -p "" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  rm -rf "${backup_dir}"
+  echo -e "${green}Deleting backup directory: ${blue}${backup_dir}${reset} ${green}done${reset}"
+fi
