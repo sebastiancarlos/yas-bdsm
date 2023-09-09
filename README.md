@@ -50,7 +50,7 @@ Our core principles and safewords are:
 - yas-bdsm
   - base/    (cross-platform dotfiles)
   - linux/   (linux-only dotfiles)
-  - macos/   (macos dotfiles)
+  - macos/   (macOS-only dotfiles)
   - yas-bdsm (executable)
   - Makefile
 ```
