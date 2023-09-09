@@ -133,7 +133,9 @@ I don't particularly appreciate that it wraps around git. YAS-BDSM lets you hand
 
 #### 8. Why not [chezmoi](https://www.chezmoi.io/)?
 
-Because I'm not a trendy gopher, I'm an old-school UNIX-head.
+Because I'm not a gopher, I'm an old-school UNIX-head.
+
+Honestly, chezmoi is a nice library but I wanted something minimal. Do you want to add templates, compilation, or encryption? Be my guest! You can put whatever you wish inside of YAS-BDSM as long as everyone is having a good time.
 
 #### 9. Can I change the folder name to something safe for work like "dotfiles"?
 
