@@ -24,7 +24,7 @@ Our core principles and safewords are:
 - **Non-destructive:** Your existing dotfiles will not be touched unless you
   explicitly beg YAS-BDSM to do so.
 - **Keep your boots on:** YAS-BDSM pushes the symlinks and gets out of the
-  way. It's up to you to handle version control of your dotfiles.
+  way. It's up to you to handle version control for your dotfiles.
 
 ## Installation
 
