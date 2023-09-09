@@ -127,11 +127,11 @@ The first time you run `yas-bdsm install`, it will ask you to back up your curre
 
 You can think of `yas-bdsm eject` as your safeword. It will turn all your symlinked dotfiles in your home folder into full-fledged files. Then you are on your own.
 
-#### 7. Why not YADM?
+#### 7. Why not [YADM](https://yadm.io/)?
 
 I don't particularly appreciate that it wraps around git. YAS-BDSM let's you handle the version control as you please.
 
-#### 8. Why not chezmoi?
+#### 8. Why not [chezmoi](https://www.chezmoi.io/)?
 
 Because I'm not a trendy gopher, I'm an old-school UNIX-head.
 
