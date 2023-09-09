@@ -64,7 +64,7 @@ YAS-BDSM is a folder structure and a shell script on top of GNU Stow (a symlink 
 3. If your dotfiles change in any way, run `./yas-bdsm install` again to sync
    the changes to your home folder.
 
-## The yas-bdsm command
+## The `yas-bdsm` command
 
 ```bash
 Usage: yas-bdsm [-h/--help] [install|restore-backup|eject]
