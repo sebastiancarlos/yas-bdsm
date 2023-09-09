@@ -135,5 +135,5 @@ Because I'm not a trendy gopher, I'm an old-school UNIX-head.
 
 #### 7. Is this repo a joke?
 
-Yes, but it's also my daily driver for dot files. Feel free to use it (or get used by it).
+Yes, but it's also my daily driver for dotfiles. Feel free to use it (or get used by it).
 
