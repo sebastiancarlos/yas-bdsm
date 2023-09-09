@@ -84,13 +84,13 @@ When using YAS-BDSM, its dotfile folders are the source of truth. Your home dire
 
 This implies the following:
 
-### If you want to edit a dotfile...
+#### If you want to edit a dotfile...
 Do it as usual: `vim ~/.config/some-dotfile`. It will follow the symlink and edit the source file.
 
-### If you want to add, delete, or move dotfiles...
+#### If you want to add, delete, or move dotfiles...
 You will need to do it in the source folder, and then run `yas-bdsm install` to sync the changes. The symlinks for the deleted file will be removed.
 
-### If you want dotfiles in your home folder that are not managed by `yas-bdsm`...
+#### If you want dotfiles in your home folder that are not managed by `yas-bdsm`...
 
 You can do it. `yas-bdsm` won't touch them. If you want, you can add them to `yas-bdsm` later.
 
@@ -103,7 +103,7 @@ Yas. That way, it's easy to install your dotfiles in any new system with interne
 We recommend a private repo. If you want to use a public repo,set up a
 `.gitignore` file to avoid exposing your sensitive bits.
 
-#### 2. What if there is a conflict between dotfiles in `base` and `linux`
+#### 2. What if there is a conflict between dotfiles in `base` and `linux`?
 
 The dotfiles in `linux` will override the dotfiles in `base` with the same name.
 
