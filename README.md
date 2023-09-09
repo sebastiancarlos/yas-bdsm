@@ -119,7 +119,7 @@ Indeed, we suggest that Bash scripts within dotfiles perform platform detection 
 
 Dotfiles are lightweight, so there's no harm in installing extra dotfiles that the platform doesn't need if that eases maintainability. It is better to ask forgiveness than permission!
 
-#### 5. How does the backup system work?
+#### 5. What if there are conflicts between yas-bdsm's dotfiles and my home folder?
 
 The first time you run `yas-bdsm install`, it will ask you to back up your current dotfiles that conflict with those to be installed. If you accept, a `backup` folder will be created in the `yas-bdsm` folder, which can be restored to your home directory at any time by running `yas-bdsm restore-backup`.
 
