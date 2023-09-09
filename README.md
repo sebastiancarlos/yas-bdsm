@@ -8,20 +8,20 @@ YAS-BDSM is a minimal, UNIX-based, cross-platform, hierarchical dotfiles manager
 
 Our core principles and safewords are:
 
-- Minimal dependencies: Only Bash and GNU Stow.
-- Symlink-based: Don't be a simp; Symlinks in your home folder
+- **Minimal dependencies:** Only Bash and GNU Stow.
+- **Symlink-based:** Don't be a simp; Symlinks in your home folder
   are the ultimate way to organize your dotfiles.
-- Cross-platform: With built-in platform detection, you can install your
+- **Cross-platform:** With built-in platform detection, you can install your
   dotfiles on Linux and MacOS.
-- Hierarchical directory structure: Who is your daddy? The `base` directory.
+- **Hierarchical directory structure:** Who's your daddy? The `base` directory.
   Then the dotfiles in either the `linux` or `macos` folder will be installed
   too. (A tertiary hierarchy for Linux distros is planned for a future release.)
-- Colorful CLI interface: Taste the rainbow, m\*\*er.
-- Self-contained: The entire system is in a single folder, making it easy to
+- **Colorful CLI interface:** Taste the rainbow, m\*\*er.
+- **Self-contained:** The entire system is in a single folder, making it easy to
   clone and install. The `yas-dbsm` executable is right next to your dotfiles.
-- Non-destructive: Your existing dotfiles will not be touched unless you
+- **Non-destructive:** Your existing dotfiles will not be touched unless you
   explicitly tell YAS-BDSM to do so.
-- Keep your boots on: YAS-BDSM pushes the symlinks and gets out of the
+- **Keep your boots on:** YAS-BDSM pushes the symlinks and gets out of the
   way. It's up to you to handle version control of your dotfiles.
 
 ## Installation
@@ -66,7 +66,15 @@ YAS-BDSM is a folder structure and a shell script on top of GNU Stow (a symlink 
 
 ## The yas-bdsm command
 
-TODO
+```bash
+Usage: yas-bdsm [-h/--help] [install|restore-backup|eject]
+
+       -h/--help: Show this help message
+
+       install:        Install or sync the dotfiles as symlinks in your home folder.
+       restore-backup: Restore the backup of your dotfiles created by install.
+       eject:          Replace the symlinks in your home folder with hard copies.
+```
 
 ## Best practices
 
