@@ -35,7 +35,7 @@ Our core principles and safewords are:
 
 ### Install YAS-BDSM
 
-- Clone YAS-BDSM: `git clone XXX`
+- Clone YAS-BDSM: `git clone https://github.com/sebastiancarlos/yas-bdsm`
 - Go into your new dotfiles directory: `cd yas-bdsm`
 - Run `./yas-bdsm`
   - Or, if you want to truly submit to YAS-BDSM, add it to your path with `make
