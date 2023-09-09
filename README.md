@@ -96,11 +96,11 @@ You can do it. `yas-bdsm` won't touch them. If you want, you can add them to `ya
 
 ## FAQ
 
-#### 1. Should I store my dotfiles online?
+#### 1. Should I store my dotfiles in an online repo?
 
 Yas. That way, it's easy to install your dotfiles in any new system with internet access.
 
-We recommend a private repo. If you want to use a public repo,set up a
+We recommend a private repo. If you want to use a public repo, set up a
 `.gitignore` file to avoid exposing your sensitive bits.
 
 #### 2. What if there is a conflict between dotfiles in `base` and `linux`?
