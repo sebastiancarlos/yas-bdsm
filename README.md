@@ -11,6 +11,7 @@ YAS-BDSM is a minimal, UNIX-based, cross-platform, hierarchical dotfiles manager
 Our core principles and safewords are:
 
 - **Minimal dependencies:** Only Bash and [GNU Stow](https://www.gnu.org/software/stow/).
+- **Minimal code:** Around 300 lines of code. You can read it in a few minutes.
 - **Symlink-based:** Don't be a simp; Symlinks in your home folder
   are the ultimate way to organize your dotfiles.
 - **Cross-platform:** With built-in platform detection, you can install your
@@ -144,4 +145,3 @@ Yes.
 #### 10. Is this repo a joke?
 
 Yes, but it's also my daily driver for dotfiles. Feel free to use it (or get used by it).
-
