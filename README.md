@@ -107,21 +107,21 @@ We recommend a private repo. If you want to use a public repo, set up a
 
 The dotfiles in `linux` will override the dotfiles in `base` with the same name.
 
-#### 3. Is Windows supported?
+#### 3. What if there is a conflict between yas-bdsm's dotfiles and my home folder?
+
+The first time you run `yas-bdsm install`, it will ask you to back up your current dotfiles that conflict with those to be installed. If you accept, a `backup` folder will be created in the `yas-bdsm` folder, which can be restored to your home directory at any time by running `yas-bdsm restore-backup`.
+
+#### 4. Is Windows supported?
 
 Patience, my corporate slave. That feature will be added soon. But, as this is a UNIX tool, it will only support WLS.
 
-#### 4. Should I put most of my dotfiles in `base`?
+#### 5. Should I put most of my dotfiles in `base`?
 
 Yas! We believe that overriding files by platform should be kept to a minimum, to ease maintainability. 
 
 Indeed, we suggest that Bash scripts within dotfiles perform platform detection by themselves at runtime and use conditional statements.
 
 Dotfiles are lightweight, so there's no harm in installing extra dotfiles that the platform doesn't need if that eases maintainability. It is better to ask forgiveness than permission!
-
-#### 5. What if there are conflicts between yas-bdsm's dotfiles and my home folder?
-
-The first time you run `yas-bdsm install`, it will ask you to back up your current dotfiles that conflict with those to be installed. If you accept, a `backup` folder will be created in the `yas-bdsm` folder, which can be restored to your home directory at any time by running `yas-bdsm restore-backup`.
 
 #### 6. How does the eject system work?
 
