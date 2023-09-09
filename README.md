@@ -2,7 +2,7 @@
 
 ![logo](https://github.com/sebastiancarlos/yas-bdsm/assets/88276600/00f53156-8fc3-4eea-b09f-6129db56eb88)
 
-This `dotfiles` folder was bootstrapped, managed, and whipped into submission by **YAS-BDSM**.
+This `dotfiles` folder was bootstrapped, managed, and whipped into submission by **[YAS-BDSM](https://github.com/sebastiancarlos/yas-bdsm)**.
 
 ## Features
 
@@ -10,7 +10,7 @@ YAS-BDSM is a minimal, UNIX-based, cross-platform, hierarchical dotfiles manager
 
 Our core principles and safewords are:
 
-- **Minimal dependencies:** Only Bash and GNU Stow.
+- **Minimal dependencies:** Only Bash and [GNU Stow](https://www.gnu.org/software/stow/).
 - **Symlink-based:** Don't be a simp; Symlinks in your home folder
   are the ultimate way to organize your dotfiles.
 - **Cross-platform:** With built-in platform detection, you can install your
@@ -30,7 +30,7 @@ Our core principles and safewords are:
 
 ### Prerequisites
 
-- Install GNU Stow
+- Install [GNU Stow](https://www.gnu.org/software/stow/)
   - MacOS: `brew install stow`
   - Linux: `sudo apt-get install stow`
   - Arch (btw): `sudo pacman -S stow`
@@ -57,7 +57,7 @@ Our core principles and safewords are:
 
 ## Technical Details
 
-YAS-BDSM is a folder structure and a shell script on top of GNU Stow (a symlink manager). It works like this:
+YAS-BDSM is a folder structure and a shell script on top of [GNU Stow](https://www.gnu.org/software/stow/) (a symlink manager). It works like this:
 
 1. Put your dotfiles into the `base`, `linux`, and `macos` folders as needed.
 2. Run `./yas-bdsm install`, which will detect your platform and create
