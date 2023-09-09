@@ -22,7 +22,7 @@ Our core principles and safewords are:
 - **Self-contained:** The entire system is in a single folder, making it easy to
   clone and install. The `yas-dbsm` executable is right next to your dotfiles.
 - **Non-destructive:** Your existing dotfiles will not be touched unless you
-  explicitly tell YAS-BDSM to do so.
+  explicitly beg YAS-BDSM to do so.
 - **Keep your boots on:** YAS-BDSM pushes the symlinks and gets out of the
   way. It's up to you to handle version control of your dotfiles.
 
