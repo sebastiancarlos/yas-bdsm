@@ -20,7 +20,7 @@ Our core principles and safewords are:
   too. (A tertiary hierarchy for Linux distros is planned for a future release.)
 - **Colorful CLI interface:** Taste the rainbow, m\*\*er.
 - **Self-contained:** The entire system is in a single folder, making it easy to
-  clone and install. The `yas-dbsm` executable is right next to your dotfiles.
+  clone and install. The `yas-bdsm` executable is right next to your dotfiles.
 - **Non-destructive:** Your existing dotfiles will not be touched unless you
   explicitly beg YAS-BDSM to do so.
 - **Keep your boots on:** YAS-BDSM pushes the symlinks and gets out of the
