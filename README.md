@@ -1,5 +1,7 @@
 # YAS-BDSM (Yet Another Stow-Based Dotfiles System Manager)
 
+![logo](https://github.com/sebastiancarlos/yas-bdsm/assets/88276600/00f53156-8fc3-4eea-b09f-6129db56eb88)
+
 This `dotfiles` folder was bootstrapped, managed, and whipped into submission by **YAS-BDSM**.
 
 ## Features
