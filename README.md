@@ -1,6 +1,6 @@
 # YAS-BDSM (Yet Another Stow-Based Dotfiles System Manager)
 
-This `dotfiles` folder was bootstrapped, managed, and whipped into submission by `YAS-BDSM`.
+This `dotfiles` folder was bootstrapped, managed, and whipped into submission by **YAS-BDSM**.
 
 ## Features
 
