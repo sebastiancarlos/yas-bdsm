@@ -90,9 +90,9 @@ Do it as usual: `vim ~/.config/some-dotfile`. It will follow the symlink and edi
 #### If you want to add, delete, or move dotfiles...
 You will need to do it in the source folder, and then run `yas-bdsm install` to sync the changes. The symlinks for the deleted file will be removed.
 
-#### If you want dotfiles in your home folder that are not managed by `yas-bdsm`...
+#### If you want dotfiles in your home folder that are not managed by YAS-BDSM...
 
-You can do it. `yas-bdsm` won't touch them. If you want, you can add them to `yas-bdsm` later.
+You can do it. YAS-BDSM won't touch them. If you want, you can add them to YAS-BDSM later.
 
 ## FAQ
 
