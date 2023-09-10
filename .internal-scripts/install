@@ -86,20 +86,18 @@ for package in ${stow_packages}; do
   package_files=$(find "${stow_dir}/${package}" -type f,l -printf "%P\n")
   for file in ${package_files}; do
     if [[ -f "${HOME}/${file}" ]] && [[ ! $(readlink "${HOME}/${file}") =~ "dotfiles/${package}" ]]; then
-      conflicting_files="${conflicting_files} ${file}"
+      conflicting_files="${conflicting_files}\\n${file}"
     fi
   done
 done
-conflicting_files=$(echo "${conflicting_files}" | sed 's/^ //')
+conflicting_files=$(echo "${conflicting_files}" | sed 's/^\\n//')
+conflicting_files=$(echo -e "${conflicting_files}" | sort -u)
 
 # If there are conflicting files.
 if [[ -n "${conflicting_files}" ]]; then
   echo ''
   echo -e "${red}Found conflicting files:${reset}"
-  # print them one by line
-  for file in ${conflicting_files}; do
-    echo -e "${purple}~/${file}${reset}"
-  done
+  echo -e "${purple}$(echo -e "${conflicting_files}" | sed "s/^/~\//")${reset}"
   echo ''
 
   # If a backup directory exists, exit. Tell user to remove conflicting files
