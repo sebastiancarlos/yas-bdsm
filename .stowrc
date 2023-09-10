@@ -2,3 +2,4 @@
 --verbose
 --verbose
 --no-folding
+--override=.*
