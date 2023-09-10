@@ -51,6 +51,7 @@ echo -e "${green}Detected platform: ${blue}${platform}${reset}"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_dir="$(realpath "${script_dir}/..")"
 stow_dir="${repo_dir}"
+stow_dir_name=$(basename "${stow_dir}")
 backup_dir="${repo_dir}/backup"
 
 # exit if all the stow packages for the platform are empty
@@ -85,7 +86,7 @@ conflicting_files=''
 for package in ${stow_packages}; do
   package_files=$(find "${stow_dir}/${package}" -type f,l -printf "%P\n")
   for file in ${package_files}; do
-    if [[ -f "${HOME}/${file}" ]] && [[ ! $(readlink "${HOME}/${file}") =~ "dotfiles/${package}" ]]; then
+    if [[ -f "${HOME}/${file}" ]] && [[ ! $(readlink "${HOME}/${file}") =~ "${stow_dir_name}/" ]]; then
       conflicting_files="${conflicting_files}\\n${file}"
     fi
   done
