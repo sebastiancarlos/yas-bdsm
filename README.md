@@ -142,10 +142,10 @@ Honestly, chezmoi is a nice library but I wanted something minimal. Do you want 
 
 I used Stow to save a little bit of development time. Stow already comes with good verbose logging, fails with error message if conflicts are detected, and removes dead symlinks on update. Basically, it was convenient to build on top of something that I didn't have to debug. I might remove it at some point.
 
-#### 9. Can I change the folder name to something safe for work like "dotfiles"?
+#### 10. Can I change the folder name to something safe for work like "dotfiles"?
 
 Yes.
 
-#### 10. Is this repo a joke?
+#### 11. Is this repo a joke?
 
 Yes, but it's also my daily driver for dotfiles. Feel free to use it (or get used by it).
