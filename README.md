@@ -138,6 +138,10 @@ Because I'm not a gopher, I'm an old-school UNIX-head.
 
 Honestly, chezmoi is a nice library but I wanted something minimal. Do you want to add templates, compilation, or encryption? Be my guest! You can put whatever you wish inside of YAS-BDSM as long as everyone is having a good time.
 
+#### 9. Why use GNU Stow?
+
+I used Stow to save a little bit of development time. Stow already comes with good verbose logging, fails with error message if conflicts are detected, and removes dead symlinks on update. Basically, it was convenient to build on top of something that I didn't have to debug. I might remove it at some point.
+
 #### 9. Can I change the folder name to something safe for work like "dotfiles"?
 
 Yes.
