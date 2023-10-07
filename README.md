@@ -144,7 +144,7 @@ I used Stow to save a little bit of development time. Stow already comes with go
 
 #### 10. Can I change the folder name to something safe for work like "dotfiles"?
 
-Yes.
+Yes. Just rename the "yas-bdsm" folder and everything will keep working fine - the script doesn't rely on a specific folder name.
 
 #### 11. Is this repo a joke?
 
