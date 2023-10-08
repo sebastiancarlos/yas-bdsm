@@ -130,7 +130,7 @@ You can think of `yas-bdsm eject` as your safeword. It will turn all your symlin
 
 #### 7. Can I install into another user's home folder?
 
-Sure! For example, `sudo yas-dbsm` will install into the root user's home folder.
+Sure! For example, `sudo yas-dbsm install` will install into the root user's home folder.
 
 #### 8. Why not [YADM](https://yadm.io/)?
 
