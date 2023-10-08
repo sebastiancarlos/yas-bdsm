@@ -128,6 +128,10 @@ Dotfiles are lightweight, so there's no harm in installing extra dotfiles that t
 
 You can think of `yas-bdsm eject` as your safeword. It will turn all your symlinked dotfiles in your home folder into full-fledged files. Then you are on your own.
 
+#### 7. Can I install into another user's home folder?
+
+Sure! For example, `sudo yas-dbsm` will install into the root user's home folder.
+
 #### 7. Why not [YADM](https://yadm.io/)?
 
 I don't particularly appreciate that it wraps around git. YAS-BDSM lets you handle version control as you please.
