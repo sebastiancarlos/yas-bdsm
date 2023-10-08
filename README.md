@@ -132,24 +132,24 @@ You can think of `yas-bdsm eject` as your safeword. It will turn all your symlin
 
 Sure! For example, `sudo yas-dbsm` will install into the root user's home folder.
 
-#### 7. Why not [YADM](https://yadm.io/)?
+#### 8. Why not [YADM](https://yadm.io/)?
 
 I don't particularly appreciate that it wraps around git. YAS-BDSM lets you handle version control as you please.
 
-#### 8. Why not [chezmoi](https://www.chezmoi.io/)?
+#### 9. Why not [chezmoi](https://www.chezmoi.io/)?
 
 Because I'm not a gopher, I'm an old-school UNIX-head.
 
 Honestly, chezmoi is a nice library but I wanted something minimal. Do you want to add templates, compilation, or encryption? Be my guest! You can put whatever you wish inside of YAS-BDSM as long as everyone is having a good time.
 
-#### 9. Why use GNU Stow?
+#### 10. Why use GNU Stow?
 
 I used Stow to save a little bit of development time. Stow already comes with good verbose logging, fails with error message if conflicts are detected, and removes dead symlinks on update. Basically, it was convenient to build on top of something that I didn't have to debug. I might remove it at some point.
 
-#### 10. Can I change the folder name to something safe for work like "dotfiles"?
+#### 11. Can I change the folder name to something safe for work like "dotfiles"?
 
 Yes. Just rename the "yas-bdsm" folder and everything will keep working fine - the script doesn't rely on a specific folder name.
 
-#### 11. Is this repo a joke?
+#### 12. Is this repo a joke?
 
 Yes, but it's also my daily driver for dotfiles. Feel free to use it (or get used by it).
