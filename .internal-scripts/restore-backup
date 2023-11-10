@@ -8,7 +8,7 @@ reset="\033[0m"
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_dir="$(realpath "${script_dir}/..")"
-backup_dir="${repo_dir}/backup"
+backup_dir="${repo_dir}/installation-backup"
 
 # exit if there is no backup directory, and point user to bin/install
 if [[ ! -d "${backup_dir}" ]]; then

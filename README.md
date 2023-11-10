@@ -110,7 +110,7 @@ The dotfiles in `linux` will override the dotfiles in `base` with the same name.
 
 #### 3. What if there is a conflict between yas-bdsm's dotfiles and my home folder?
 
-The first time you run `yas-bdsm install`, it will ask you to back up your current dotfiles that conflict with those to be installed. If you accept, a `backup` folder will be created in the `yas-bdsm` folder, which can be restored to your home directory at any time by running `yas-bdsm restore-backup`.
+The first time you run `yas-bdsm install`, it will ask you to back up your current dotfiles that conflict with those to be installed. If you accept, a `installation-backup` folder will be created in the `yas-bdsm` folder, which can be restored to your home directory at any time by running `yas-bdsm restore-backup`.
 
 #### 4. Is Windows supported?
 

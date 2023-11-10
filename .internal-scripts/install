@@ -52,7 +52,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_dir="$(realpath "${script_dir}/..")"
 stow_dir="${repo_dir}"
 stow_dir_name=$(basename "${stow_dir}")
-backup_dir="${repo_dir}/backup"
+backup_dir="${repo_dir}/installation-backup"
 
 # exit if all the stow packages for the platform are empty
 stow_packages="base ${platform}"
